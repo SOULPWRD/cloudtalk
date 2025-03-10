@@ -9,6 +9,6 @@ services:
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: items
     ports:
-      - "5432:5432"
+      - "6543:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
