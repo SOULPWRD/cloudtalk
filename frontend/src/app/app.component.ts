@@ -1,29 +1,16 @@
-import type {Product} from "./products-row/models";
-
-import {Component} from "@angular/core";
+import {Component, inject} from "@angular/core";
+import {AsyncPipe} from "@angular/common";
 import {ProductsComponent} from "./products/products.component";
-
-const mocks: Product[] = [
-  {
-    id: crypto.randomUUID(),
-    name: "Apple",
-    price: 1,
-    quantity: 1
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "Banana",
-    price: 1.5,
-    quantity: 2
-  }
-];
+import {ProductsService} from "./products/products.service";
 
 @Component({
   selector: "app-root",
-  imports: [ProductsComponent],
+  imports: [AsyncPipe, ProductsComponent],
+  providers: [ProductsService],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss"
 })
 export class AppComponent {
-  data: Product[] = mocks;
+  private service = inject(ProductsService);
+  products$ = this.service.getProducts();
 }
