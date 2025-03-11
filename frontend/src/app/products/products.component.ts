@@ -1,4 +1,4 @@
-import type {Product} from "../products-row/models";
+import type {Product} from "./models";
 import {Component, Input} from "@angular/core";
 import {ProductsRowComponent} from "../products-row/products-row.component";
 
