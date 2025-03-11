@@ -34,7 +34,7 @@ describe("Products router", () => {
   });
 
   describe("POST /products", () => {
-    it("create a single product item", async () => {
+    it("creates a single product item", async () => {
       const [product] = products;
       const response = await request(app)
         .post(baseUrl)
@@ -47,6 +47,22 @@ describe("Products router", () => {
         id: expect.any(String),
         ...product
       });
+    });
+  });
+
+  describe("DELETE /products/:id", () => {
+    it("deletes a selected product based on its id", async () => {
+      const [data] =
+        await sql`INSERT INTO product ${sql(products)} RETURNING *`;
+      const response = await request(app)
+        .delete(`${baseUrl}/${data.id}`)
+        .expect(204);
+
+      const [{count}] =
+        await sql`SELECT count(id) as count FROM product LIMIT 1`;
+
+      expect(response.status).toBe(204);
+      expect(Number(count)).toBe(1);
     });
   });
 });

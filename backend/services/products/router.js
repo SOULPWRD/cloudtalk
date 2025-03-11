@@ -1,7 +1,7 @@
 import express from "express";
 import {celebrate, Segments} from "celebrate";
 import {sql} from "../../client.js";
-import {createProductPayload} from "./schema.js";
+import {createProductPayload, deleteProductParam} from "./schema.js";
 
 const router = express.Router();
 
@@ -12,8 +12,9 @@ router.get("/", async (_, res) => {
       name,
       quantity,
       price
-    FROM product`;
-  res.json(products);
+    FROM product
+  `;
+  return res.json(products);
 });
 
 router.post(
@@ -23,10 +24,28 @@ router.post(
   }),
   async (req, res) => {
     const [product] = await sql`
-    INSERT INTO product ${sql(req.body)} RETURNING *
-  `;
+      INSERT INTO product ${sql(req.body)} RETURNING *
+    `;
 
-    res.status(201).json(product);
+    return res.status(201).json(product);
+  }
+);
+
+router.delete(
+  "/:id",
+  celebrate({
+    [Segments.PARAMS]: deleteProductParam
+  }),
+  async (req, res) => {
+    const id = req.params.id;
+
+    const [result] = await sql`SELECT id FROM product WHERE id=${id}`;
+    if (!result?.id) {
+      return res.status(404).send();
+    }
+
+    await sql`DELETE FROM product WHERE id=${id}`;
+    return res.status(204).send();
   }
 );
 
