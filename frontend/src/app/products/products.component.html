@@ -1,9 +1,9 @@
 @for (product of products; track product.id) {
-  <app-table-row
+  <app-products-row
     [quantity]="product.quantity"
     [name]="product.name"
     [price]="product.price"
-  ></app-table-row>
+  ></app-products-row>
 } @empty {
   <li>No products available</li>
 }

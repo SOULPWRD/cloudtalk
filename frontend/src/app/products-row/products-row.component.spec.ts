@@ -1,22 +1,22 @@
 import {TestBed} from "@angular/core/testing";
 
-import {TableRowComponent} from "./table-row.component";
+import {ProductsRowComponent} from "./products-row.component";
 
-describe("TableRowComponent", () => {
+describe("ProductsRowComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableRowComponent]
+      imports: [ProductsRowComponent]
     }).compileComponents();
   });
 
   it("creates a component", () => {
-    const fixture = TestBed.createComponent(TableRowComponent);
+    const fixture = TestBed.createComponent(ProductsRowComponent);
     const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
   it("displays input values", () => {
-    const fixture = TestBed.createComponent(TableRowComponent);
+    const fixture = TestBed.createComponent(ProductsRowComponent);
     const component = fixture.componentInstance;
     component.name = "Apple";
     component.price = 1.5;
