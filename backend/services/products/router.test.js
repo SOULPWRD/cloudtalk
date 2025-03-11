@@ -2,7 +2,7 @@ import {describe, it, expect, beforeAll, beforeEach} from "vitest";
 import request from "supertest";
 import {router} from "./router.js";
 import {app} from "../../app.js";
-import {cleanupDatabase} from "../../mocks/cleanup.js";
+import {cleanupDatabase} from "../../scripts/cleanup.js";
 import {sql} from "../../client.js";
 import {products} from "../../mocks/products.js";
 
