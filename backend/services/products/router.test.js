@@ -64,5 +64,37 @@ describe("Products router", () => {
       expect(response.status).toBe(204);
       expect(Number(count)).toBe(1);
     });
+
+    it("returns 404 for non-existing id", async () => {
+      const response = await request(app)
+        .delete(`${baseUrl}/${crypto.randomUUID()}`)
+        .expect(404);
+
+      expect(response.status).toBe(404);
+    });
+  });
+
+  describe("PATCH /products/:id", () => {
+    it("updates a corresponding product item", async () => {
+      const [product] = products;
+      const [data] = await sql`INSERT INTO product ${sql(product)} RETURNING *`;
+      const payload = {name: "Pineapple", quantity: 5};
+      const response = await request(app)
+        .patch(`${baseUrl}/${data.id}`)
+        .set("Accept", "application/json")
+        .send(payload)
+        .expect(201);
+
+      expect(response.status).toBe(201);
+      expect(response.body).toEqual({...data, ...payload});
+    });
+
+    it("returns 404 for non-existing id", async () => {
+      const response = await request(app)
+        .delete(`${baseUrl}/${crypto.randomUUID()}`)
+        .expect(404);
+
+      expect(response.status).toBe(404);
+    });
   });
 });

@@ -6,8 +6,14 @@ const createProductPayload = Joi.object().keys({
   price: Joi.string().required()
 });
 
-const deleteProductParam = Joi.object({
+const productParam = Joi.object({
   id: Joi.string().uuid().required()
 });
 
-export {createProductPayload, deleteProductParam};
+const updateProductPayload = Joi.object({
+  name: Joi.string().optional(),
+  quantity: Joi.number().min(0).optional(),
+  price: Joi.string().optional()
+});
+
+export {createProductPayload, productParam, updateProductPayload};
