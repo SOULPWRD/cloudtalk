@@ -11,7 +11,6 @@ const seed = async () => {
 const main = async () => {
   await cleanupDatabase();
   await seed();
-  // eslint-disable-next-line no-undef
   process.exit(0);
 };
 
@@ -19,6 +18,5 @@ try {
   main();
 } catch (err) {
   console.error(err);
-  // eslint-disable-next-line no-undef
   process.exit(1);
 }
