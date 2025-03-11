@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS product (
 );
 
 -- Insert initial data
-INSERT INTO product (Name, quantity, price) VALUES ('Apple', 100, 0.50);
+INSERT INTO product (name, quantity, price) VALUES ('Apple', 100, 0.50);
 INSERT INTO product (name, quantity, price) VALUES ('Banana', 150, 0.30);
 INSERT INTO product (name, quantity, price) VALUES ('Orange', 80, 0.60);
 INSERT INTO product (name, quantity, price) VALUES ('Grapes', 200, 1.20);
