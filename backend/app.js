@@ -7,20 +7,12 @@ import {fileURLToPath} from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-import {createRouter as itemsRouter} from "./routes/products/router.js";
+const app = express();
 
-const createApp = (client) => {
-  const app = express();
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
 
-  app.use(logger("dev"));
-  app.use(express.json());
-  app.use(express.urlencoded({extended: false}));
-  app.use(cookieParser());
-  app.use(express.static(path.join(__dirname, "public")));
-
-  app.use("/items", itemsRouter(client));
-
-  return app;
-};
-
-export {createApp};
+export {app};

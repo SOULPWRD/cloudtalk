@@ -4,10 +4,15 @@
  * Module dependencies.
  */
 
-import {createApp} from "../app.js";
-import {sql} from "../client.js";
 import debug from "debug";
 import http from "http";
+import {app} from "../app.js";
+import * as services from "../services/index.js";
+
+// register all services
+Object.entries(services).forEach(([name, router]) => {
+  app.use(`/${name}`, router);
+});
 
 const debugServer = debug("warehouse-api:server");
 
@@ -15,7 +20,6 @@ const debugServer = debug("warehouse-api:server");
  * Get port from environment and store in Express.
  */
 
-const app = createApp(sql);
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
