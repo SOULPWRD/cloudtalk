@@ -91,7 +91,7 @@ describe("Products router", () => {
 
     it("returns 404 for non-existing id", async () => {
       const response = await request(app)
-        .delete(`${baseUrl}/${crypto.randomUUID()}`)
+        .patch(`${baseUrl}/${crypto.randomUUID()}`)
         .expect(404);
 
       expect(response.status).toBe(404);
