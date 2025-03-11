@@ -32,4 +32,21 @@ describe("Products router", () => {
       );
     });
   });
+
+  describe("POST /products", () => {
+    it("create a single product item", async () => {
+      const [product] = products;
+      const response = await request(app)
+        .post(baseUrl)
+        .send(product)
+        .set("Accept", "application/json")
+        .expect("Content-Type", /json/)
+        .expect(201);
+
+      expect(response.body).toEqual({
+        id: expect.any(String),
+        ...product
+      });
+    });
+  });
 });
