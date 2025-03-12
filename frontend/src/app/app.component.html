@@ -1,5 +1,7 @@
 @if (showModal) {
-  <app-modal title="Form" (toggle)="toggleModal($event)"></app-modal>
+  <app-modal title="Form" (toggle)="toggleModal($event)">
+    <app-product-form title="Product"></app-product-form>
+  </app-modal>
 } @else {
   <button (click)="toggleModal(true)">Add product</button>
 }

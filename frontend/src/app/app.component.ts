@@ -6,10 +6,11 @@ import {BehaviorSubject} from "rxjs";
 import {ProductsComponent} from "./products/products.component";
 import {ProductsService} from "./products/products.service";
 import {ModalComponent} from "./modal/modal.component";
+import {ProductFormComponent} from "./product-form/product-form.component";
 
 @Component({
   selector: "app-root",
-  imports: [AsyncPipe, ProductsComponent, ModalComponent],
+  imports: [AsyncPipe, ProductsComponent, ModalComponent, ProductFormComponent],
   providers: [ProductsService],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss"
