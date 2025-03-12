@@ -4,7 +4,7 @@ import {Component, inject, OnInit} from "@angular/core";
 import {AsyncPipe} from "@angular/common";
 import {BehaviorSubject} from "rxjs";
 import {ProductsComponent} from "./products/products.component";
-import {ProductsService} from "./products/products.service";
+import {ProductsService} from "./products/products-api.service";
 import {ModalComponent} from "./modal/modal.component";
 import {ProductFormComponent} from "./product-form/product-form.component";
 
