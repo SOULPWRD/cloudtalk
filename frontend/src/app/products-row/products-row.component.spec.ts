@@ -26,8 +26,8 @@ describe("ProductsRowComponent", () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const paragraphs = compiled.querySelectorAll("p");
 
-    expect(paragraphs[0]?.textContent).toBe("Apple");
-    expect(paragraphs[1]?.textContent).toBe("80");
-    expect(paragraphs[2]?.textContent).toBe("1.5");
+    expect(paragraphs[1]?.textContent).toBe("Name: Apple");
+    expect(paragraphs[2]?.textContent).toBe("Quantity: 80");
+    expect(paragraphs[3]?.textContent).toBe("Price: 1.5");
   });
 });
