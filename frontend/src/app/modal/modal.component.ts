@@ -8,9 +8,10 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 })
 export class ModalComponent {
   @Input({required: true}) title!: string;
-  @Output() close = new EventEmitter();
+  @Output() toggle = new EventEmitter();
 
-  closeModal() {
-    this.close.emit(true);
+  toggleModal() {
+    // closing the modal
+    this.toggle.emit(false);
   }
 }

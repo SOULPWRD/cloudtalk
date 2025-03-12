@@ -1,3 +1,9 @@
+@if (showModal) {
+  <app-modal title="Form" (toggle)="toggleModal($event)"></app-modal>
+} @else {
+  <button (click)="toggleModal(true)">Add product</button>
+}
+
 @if (products$ | async; as products) {
   <app-products
     (productDelete)="removeProduct($event)"
