@@ -1,3 +1,6 @@
 @if (products$ | async; as products) {
-  <app-products [products]="products"></app-products>
+  <app-products
+    (productDelete)="removeProduct($event)"
+    [products]="products"
+  ></app-products>
 }

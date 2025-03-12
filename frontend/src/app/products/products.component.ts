@@ -1,5 +1,5 @@
 import type {Product} from "./models";
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {ProductsRowComponent} from "../products-row/products-row.component";
 
 @Component({
@@ -10,4 +10,9 @@ import {ProductsRowComponent} from "../products-row/products-row.component";
 })
 export class ProductsComponent {
   @Input({required: true}) products!: Product[];
+  @Output() productDelete = new EventEmitter<string>();
+
+  removeProduct(id: string) {
+    this.productDelete.emit(id);
+  }
 }
