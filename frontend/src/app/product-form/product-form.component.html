@@ -1,0 +1,10 @@
+<h2>{{ title }}</h2>
+<form [formGroup]="productForm" (ngSubmit)="submit()">
+  <label for="name">Name: </label>
+  <input id="name" type="text" formControlName="name" />
+  <label for="quantity">Quantity: </label>
+  <input id="quantity" type="text" formControlName="quantity" />
+  <label for="price">Price: </label>
+  <input id="price" type="text" formControlName="price" />
+  <button type="submit" [disabled]="!productForm.valid">Submit</button>
+</form>
