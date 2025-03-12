@@ -14,4 +14,8 @@ export class ProductsService {
   removeProduct(id: string) {
     return this.http.delete(`http://localhost:4200/api/products/${id}`);
   }
+
+  createProduct(product: Omit<Product, "id">) {
+    return this.http.post("http://localhost:4200/api/products", product);
+  }
 }
