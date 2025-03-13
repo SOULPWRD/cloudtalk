@@ -5,9 +5,8 @@
       (submittor)="addProduct($event)"
     ></app-product-form>
   </app-modal>
-} @else {
-  <button (click)="toggleCreateModal(true)">Add product</button>
 }
+<button (click)="toggleCreateModal(true)">Add product</button>
 
 @if (showEditModal()) {
   <app-modal title="Edit product" (toggle)="toggleEditModal($event)">
