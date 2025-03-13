@@ -10,7 +10,6 @@ import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 })
 export class ProductFormComponent implements OnInit {
   @Input() data!: Product | null;
-  @Input({required: true}) title!: string;
   @Output() submittor = new EventEmitter<Product>();
   productForm!: FormGroup;
 

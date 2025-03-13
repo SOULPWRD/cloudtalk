@@ -9,7 +9,7 @@ import {ProductsRowComponent} from "../products-row/products-row.component";
   styleUrl: "./products.component.scss"
 })
 export class ProductsComponent {
-  @Input({required: true}) products!: Product[];
+  @Input({required: true}) products!: Product[] | undefined;
   @Output() productDelete = new EventEmitter<string>();
 
   removeProduct(id: string) {

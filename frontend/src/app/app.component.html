@@ -1,14 +1,16 @@
-@if (showModal) {
-  <app-modal title="Form" (toggle)="toggleModal($event)">
+@if (showCreateModal) {
+  <app-modal title="Add product" (toggle)="toggleCreateModal($event)">
     <app-product-form title="Product"></app-product-form>
   </app-modal>
 } @else {
-  <button (click)="toggleModal(true)">Add product</button>
+  <button (click)="toggleCreateModal(true)">Add product</button>
 }
 
-@if (products$ | async; as products) {
+@if (!products()) {
+  <div>Loading products...</div>
+} @else {
   <app-products
     (productDelete)="removeProduct($event)"
-    [products]="products"
+    [products]="products()"
   ></app-products>
 }

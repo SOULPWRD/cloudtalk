@@ -1,8 +1,6 @@
+import {Component, inject, OnInit, signal} from "@angular/core";
 import type {Product} from "./products/models";
 
-import {Component, inject, OnInit} from "@angular/core";
-import {AsyncPipe} from "@angular/common";
-import {BehaviorSubject} from "rxjs";
 import {ProductsComponent} from "./products/products.component";
 import {ProductsService} from "./products/products-api.service";
 import {ModalComponent} from "./modal/modal.component";
@@ -10,34 +8,37 @@ import {ProductFormComponent} from "./product-form/product-form.component";
 
 @Component({
   selector: "app-root",
-  imports: [AsyncPipe, ProductsComponent, ModalComponent, ProductFormComponent],
+  imports: [ProductsComponent, ModalComponent, ProductFormComponent],
   providers: [ProductsService],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss"
 })
 export class AppComponent implements OnInit {
-  private service = inject(ProductsService);
-  private productsSubject = new BehaviorSubject<Product[] | null>(null);
-  showModal: boolean = false;
-  products$ = this.productsSubject.asObservable();
+  private api = inject(ProductsService);
 
-  ngOnInit() {
-    this.service.getProducts().subscribe({
-      next: (data) => this.productsSubject.next(data)
+  showCreateModal: boolean = false;
+  showEditModal: boolean = false;
+  products = signal<Product[] | undefined>(undefined);
+
+  ngOnInit(): void {
+    this.api.getProducts().subscribe((products) => {
+      this.products.set(products);
     });
   }
 
-  toggleModal(value: boolean) {
-    this.showModal = value;
+  toggleCreateModal(value: boolean) {
+    this.showCreateModal = value;
+  }
+
+  toggleEditModal(value: boolean) {
+    this.showEditModal = value;
   }
 
   removeProduct(id: string) {
-    this.service.removeProduct(id).subscribe(() => {
-      const updatedProducts = (
-        this.productsSubject.getValue() as Product[]
-      ).filter((product) => product.id !== id);
-
-      this.productsSubject.next(updatedProducts);
+    this.api.removeProduct(id).subscribe(() => {
+      this.products.update((products) =>
+        products?.filter((product) => product.id !== id)
+      );
     });
   }
 }
