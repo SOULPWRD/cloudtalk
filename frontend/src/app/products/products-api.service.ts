@@ -21,4 +21,11 @@ export class ProductsService {
       product
     );
   }
+
+  updateProduct({id, ...product}: Product) {
+    return this.http.patch<Product>(
+      `http:/localhost:4200/api/products/${id}`,
+      product
+    );
+  }
 }

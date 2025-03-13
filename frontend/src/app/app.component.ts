@@ -51,4 +51,18 @@ export class AppComponent implements OnInit {
       this.toggleCreateModal(false);
     });
   }
+
+  updateProduct(product: Product) {
+    this.api.updateProduct(product).subscribe((updatedProduct) => {
+      this.products.update((products) =>
+        products?.map((product) => {
+          if (product.id === updatedProduct.id) {
+            return {...product, ...updatedProduct};
+          }
+
+          return product;
+        })
+      );
+    });
+  }
 }
