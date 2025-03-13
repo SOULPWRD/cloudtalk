@@ -1,3 +1,7 @@
+<header>
+  <h1>Product warehouse</h1>
+</header>
+
 @if (showCreateModal()) {
   <app-modal (toggle)="toggleCreateModal($event)">
     <app-product-form
@@ -6,7 +10,6 @@
     ></app-product-form>
   </app-modal>
 }
-<button (click)="toggleCreateModal(true)">Add product</button>
 
 @if (showEditModal()) {
   <app-modal title="Edit product" (toggle)="toggleEditModal($event)">
@@ -22,6 +25,7 @@
   <div>Loading products...</div>
 } @else {
   <app-products
+    (productCreate)="toggleCreateModal(true)"
     (productUpdate)="openEditModal($event)"
     (productDelete)="removeProduct($event)"
     [products]="products()"

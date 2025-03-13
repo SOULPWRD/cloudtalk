@@ -1,1 +1,9 @@
+header {
+  background-color: gainsboro;
+}
 
+header > h1 {
+  width: 60%;
+  padding: 1em;
+  margin: 0 auto;
+}

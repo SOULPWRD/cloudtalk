@@ -1,22 +1,12 @@
 :host {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Creates 4 equal columns */
+  gap: 16px; /* Spacing between grid items */
+  align-items: center; /* Vertically center content */
+  padding: 8px 16px;
+  border-bottom: 1px solid #eee;
   width: 60%;
   margin: 0 auto;
-}
-
-p {
-  flex: 1;
-  text-align: left;
-  margin-right: 10px;
-}
-
-p:last-child {
-  margin-right: 0;
-}
-
-button {
-  margin-right: 10px;
 }
 
 :host > button:last-of-type {

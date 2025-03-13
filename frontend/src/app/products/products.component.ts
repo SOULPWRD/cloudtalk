@@ -12,6 +12,7 @@ export class ProductsComponent {
   @Input({required: true}) products!: Product[] | undefined;
   @Output() productDelete = new EventEmitter<string>();
   @Output() productUpdate = new EventEmitter<Product>();
+  @Output() productCreate = new EventEmitter();
 
   removeProduct(id: string) {
     this.productDelete.emit(id);
@@ -19,5 +20,9 @@ export class ProductsComponent {
 
   updateProduct(product: Product) {
     this.productUpdate.emit(product);
+  }
+
+  createProduct() {
+    this.productCreate.emit();
   }
 }

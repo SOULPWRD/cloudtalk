@@ -1,3 +1,10 @@
+<div class="products-header">
+  <p>ID</p>
+  <p>Name</p>
+  <p>Quantity</p>
+  <p>Price (EUR)</p>
+  <button (click)="createProduct()">Add product</button>
+</div>
 @for (product of products; track product.id) {
   <app-products-row
     (delete)="removeProduct($event)"
