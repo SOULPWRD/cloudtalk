@@ -69,7 +69,7 @@ router.patch(
     }
 
     const [result] =
-      await sql`UPDATE product SET ${sql(body, Object.keys(body))} RETURNING *`;
+      await sql`UPDATE product SET ${sql(body, Object.keys(body))} WHERE id=${id} RETURNING *`;
 
     return res.status(201).send(result);
   }
