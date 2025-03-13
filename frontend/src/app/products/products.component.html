@@ -1,6 +1,7 @@
 @for (product of products; track product.id) {
   <app-products-row
     (delete)="removeProduct($event)"
+    (update)="updateProduct($event)"
     [id]="product.id"
     [quantity]="product.quantity"
     [name]="product.name"

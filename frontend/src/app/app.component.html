@@ -9,10 +9,21 @@
   <button (click)="toggleCreateModal(true)">Add product</button>
 }
 
+@if (showEditModal()) {
+  <app-modal title="Edit product" (toggle)="toggleEditModal($event)">
+    <app-product-form
+      title="Product"
+      [data]="editProduct()"
+      (submittor)="updateProduct($event)"
+    ></app-product-form>
+  </app-modal>
+}
+
 @if (!products()) {
   <div>Loading products...</div>
 } @else {
   <app-products
+    (productUpdate)="openEditModal($event)"
     (productDelete)="removeProduct($event)"
     [products]="products()"
   ></app-products>

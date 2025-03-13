@@ -9,7 +9,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
   styleUrl: "./product-form.component.scss"
 })
 export class ProductFormComponent implements OnInit {
-  @Input() data!: Product | null;
+  @Input() data!: Product | undefined;
   @Output() submittor = new EventEmitter<Product>();
   productForm!: FormGroup;
 
@@ -22,6 +22,6 @@ export class ProductFormComponent implements OnInit {
   }
 
   submit() {
-    this.submittor.emit(this.productForm.value as Product);
+    this.submittor.emit({id: this.data?.id, ...this.productForm.value});
   }
 }

@@ -23,9 +23,6 @@ export class ProductsService {
   }
 
   updateProduct({id, ...product}: Product) {
-    return this.http.patch<Product>(
-      `http:/localhost:4200/api/products/${id}`,
-      product
-    );
+    return this.http.patch<Product>(`/api/products/${id}`, product);
   }
 }

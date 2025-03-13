@@ -1,6 +1,6 @@
-import {Component, inject, OnInit, signal} from "@angular/core";
 import type {Product} from "./products/models";
 
+import {Component, inject, OnInit, signal} from "@angular/core";
 import {ProductsComponent} from "./products/products.component";
 import {ProductsService} from "./products/products-api.service";
 import {ModalComponent} from "./modal/modal.component";
@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   showCreateModal = signal(false);
   showEditModal = signal(false);
   products = signal<Product[] | undefined>(undefined);
+  editProduct = signal<Product | undefined>(undefined);
 
   ngOnInit(): void {
     this.api.getProducts().subscribe((products) => {
@@ -32,6 +33,11 @@ export class AppComponent implements OnInit {
 
   toggleEditModal(value: boolean) {
     this.showEditModal.set(value);
+  }
+
+  openEditModal(product: Product) {
+    this.editProduct.set(product);
+    this.showEditModal.set(true);
   }
 
   removeProduct(id: string) {

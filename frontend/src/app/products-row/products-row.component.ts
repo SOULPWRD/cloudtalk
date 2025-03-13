@@ -1,3 +1,4 @@
+import type {Product} from "../products/models";
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
@@ -12,8 +13,18 @@ export class ProductsRowComponent {
   @Input({required: true}) price!: number;
 
   @Output() delete = new EventEmitter<string>();
+  @Output() update = new EventEmitter<Product>();
 
-  removeProduct() {
+  deleteProduct() {
     this.delete.emit(this.id);
+  }
+
+  updateProduct() {
+    this.update.emit({
+      id: this.id,
+      name: this.name,
+      quantity: this.quantity,
+      price: this.price
+    });
   }
 }
