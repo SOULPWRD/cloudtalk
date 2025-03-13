@@ -16,6 +16,9 @@ export class ProductsService {
   }
 
   createProduct(product: Omit<Product, "id">) {
-    return this.http.post("http://localhost:4200/api/products", product);
+    return this.http.post<Product>(
+      "http://localhost:4200/api/products",
+      product
+    );
   }
 }

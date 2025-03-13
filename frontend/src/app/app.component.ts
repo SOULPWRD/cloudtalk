@@ -16,8 +16,8 @@ import {ProductFormComponent} from "./product-form/product-form.component";
 export class AppComponent implements OnInit {
   private api = inject(ProductsService);
 
-  showCreateModal: boolean = false;
-  showEditModal: boolean = false;
+  showCreateModal = signal(false);
+  showEditModal = signal(false);
   products = signal<Product[] | undefined>(undefined);
 
   ngOnInit(): void {
@@ -27,11 +27,11 @@ export class AppComponent implements OnInit {
   }
 
   toggleCreateModal(value: boolean) {
-    this.showCreateModal = value;
+    this.showCreateModal.set(value);
   }
 
   toggleEditModal(value: boolean) {
-    this.showEditModal = value;
+    this.showEditModal.set(value);
   }
 
   removeProduct(id: string) {
@@ -39,6 +39,16 @@ export class AppComponent implements OnInit {
       this.products.update((products) =>
         products?.filter((product) => product.id !== id)
       );
+    });
+  }
+
+  addProduct(product: Omit<Product, "id">) {
+    this.api.createProduct(product).subscribe((newProduct) => {
+      this.products.update((products) => {
+        products?.push(newProduct);
+        return products;
+      });
+      this.toggleCreateModal(false);
     });
   }
 }

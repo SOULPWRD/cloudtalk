@@ -1,6 +1,9 @@
-@if (showCreateModal) {
+@if (showCreateModal()) {
   <app-modal title="Add product" (toggle)="toggleCreateModal($event)">
-    <app-product-form title="Product"></app-product-form>
+    <app-product-form
+      title="Product"
+      (submittor)="addProduct($event)"
+    ></app-product-form>
   </app-modal>
 } @else {
   <button (click)="toggleCreateModal(true)">Add product</button>
