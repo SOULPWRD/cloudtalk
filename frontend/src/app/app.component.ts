@@ -41,6 +41,9 @@ export class AppComponent implements OnInit {
   }
 
   removeProduct(id: string) {
+    if (!window.confirm("Are you sure you want to delete this product?")) {
+      return;
+    }
     this.api.removeProduct(id).subscribe(() => {
       this.products.update((products) =>
         products?.filter((product) => product.id !== id)

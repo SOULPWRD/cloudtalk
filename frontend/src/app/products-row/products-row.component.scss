@@ -14,3 +14,11 @@ p {
 p:last-child {
   margin-right: 0;
 }
+
+button {
+  margin-right: 10px;
+}
+
+:host > button:last-of-type {
+  background-color: tomato;
+}
