@@ -1,7 +1,7 @@
 @if (showCreateModal()) {
-  <app-modal title="Add product" (toggle)="toggleCreateModal($event)">
+  <app-modal (toggle)="toggleCreateModal($event)">
     <app-product-form
-      title="Product"
+      title="Add product"
       (submittor)="addProduct($event)"
     ></app-product-form>
   </app-modal>
@@ -12,7 +12,7 @@
 @if (showEditModal()) {
   <app-modal title="Edit product" (toggle)="toggleEditModal($event)">
     <app-product-form
-      title="Product"
+      title="Edit product"
       [data]="editProduct()"
       (submittor)="updateProduct($event)"
     ></app-product-form>

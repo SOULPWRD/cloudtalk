@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
           return product;
         })
       );
+      this.toggleEditModal(false);
     });
   }
 }

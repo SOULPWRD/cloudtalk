@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 
 @Component({
   selector: "app-modal",
@@ -7,7 +7,6 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
   styleUrl: "./modal.component.scss"
 })
 export class ModalComponent {
-  @Input({required: true}) title!: string;
   @Output() toggle = new EventEmitter();
 
   toggleModal() {
