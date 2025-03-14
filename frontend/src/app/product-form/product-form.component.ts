@@ -20,7 +20,7 @@ const greaterThanZero = greaterThan(0);
 export class ProductFormComponent implements OnInit {
   @Input({required: true}) title!: string;
   @Input() data!: Product | undefined;
-  @Output() onSubmit = new EventEmitter<Product>();
+  @Output() onSubmit = new EventEmitter<Partial<Product>>();
   productForm!: FormGroup;
 
   ngOnInit(): void {

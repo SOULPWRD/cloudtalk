@@ -17,6 +17,8 @@ describe("ProductFormComponent", () => {
   });
 
   it("creates a component", () => {
+    const fixture = TestBed.createComponent(ProductFormComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
@@ -27,11 +29,29 @@ describe("ProductFormComponent", () => {
       price: 0.5,
       quantity: 1
     };
+
     component.data = data;
     fixture.detectChanges();
     const form = component.productForm;
     expect(form.get("name")?.value).toBe(data.name);
     expect(form.get("quantity")?.value).toBe(data.quantity);
     expect(form.get("price")?.value).toBe(data.price);
+  });
+
+  it("emits submitted values", () => {
+    const data = {
+      name: "Apple",
+      quantity: 1,
+      price: 1
+    };
+
+    fixture.detectChanges();
+    spyOn(component.onSubmit, "emit");
+    component.productForm.patchValue(data);
+    component.submit();
+    expect(component.onSubmit.emit).toHaveBeenCalledWith({
+      id: undefined,
+      ...data
+    });
   });
 });
