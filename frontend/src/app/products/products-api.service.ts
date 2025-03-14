@@ -8,18 +8,15 @@ export class ProductsService {
   private http: HttpClient = inject(HttpClient);
 
   getProducts() {
-    return this.http.get<Product[]>("http://localhost:4200/api/products");
+    return this.http.get<Product[]>("/api/products");
   }
 
   removeProduct(id: string) {
-    return this.http.delete(`http://localhost:4200/api/products/${id}`);
+    return this.http.delete(`/api/products/${id}`);
   }
 
   createProduct(product: Omit<Product, "id">) {
-    return this.http.post<Product>(
-      "http://localhost:4200/api/products",
-      product
-    );
+    return this.http.post<Product>("/api/products", product);
   }
 
   updateProduct({id, ...product}: Product) {
