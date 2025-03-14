@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "node ./scripts/seed.js && DEBUG=warehouse-api:server node ./bin/www",
+    "dev": "DEBUG=warehouse-api:server node ./bin/www",
+    "seed": "DEBUG=seed node ./scripts/seed.js",
     "start": "node ./bin/www",
     "lint": "eslint .",
     "test": "vitest"
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@faker-js/faker": "^9.6.0",
     "@vitest/coverage-v8": "^3.0.8",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",

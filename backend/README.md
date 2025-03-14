@@ -2,6 +2,12 @@
 
 This folder serves as the scaffold of the application that is a part of the interview process for candidates attending on the position in CloudTalk.
 
+## Development
+
+### Seeding
+
+In order to prefill the database with fake data, run `npm run seed` command. Don't forget to specify the number of products you want to seed. For instance, in order to seed 20 products run `npm run seed -- 20`.
+
 ## Assignment
 
 1. Warehouse application, needs API for following features
