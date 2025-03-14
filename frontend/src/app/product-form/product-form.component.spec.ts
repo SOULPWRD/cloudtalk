@@ -50,6 +50,7 @@ describe("ProductFormComponent", () => {
     component.productForm.patchValue(data);
     component.submit();
     expect(component.onSubmit.emit).toHaveBeenCalledWith({
+      // @ts-expect-error bad typings
       id: undefined,
       ...data
     });
