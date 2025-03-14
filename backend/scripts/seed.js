@@ -1,5 +1,6 @@
 import {faker} from "@faker-js/faker";
 import debug from "debug";
+import prexit from "prexit";
 import {sql} from "../client.js";
 import {cleanupDatabase} from "./cleanup.js";
 
@@ -43,3 +44,9 @@ try {
   console.error(err);
   process.exit(1);
 }
+
+prexit(async () => {
+  log("Gracefully terminating process");
+  log("Closing database connection");
+  await sql.end();
+});

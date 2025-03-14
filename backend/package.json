@@ -17,7 +17,8 @@
     "dotenv": "^16.4.7",
     "express": "~4.21.2",
     "morgan": "~1.10.0",
-    "postgres": "^3.4.5"
+    "postgres": "^3.4.5",
+    "prexit": "^2.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

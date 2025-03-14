@@ -6,6 +6,7 @@
 
 import debug from "debug";
 import http from "http";
+import prexit from "prexit";
 import {app} from "../app.js";
 import * as services from "../services/index.js";
 import {sql} from "../client.js";
@@ -94,20 +95,10 @@ server.on("error", onError);
 server.on("listening", onListening);
 
 // Gracefull termination
-
-["SIGTERM", "SIGINT"].forEach((event) => {
-  process.on(event, async () => {
-    debugServer(`Event ${event} has been triggered. Gracefully shutting down.`);
-    await sql.end();
-    debugServer(`Database connection has been ended.`);
-    server.close((error) => {
-      if (error) {
-        debugServer(`An error occured during the server shutdown.`);
-        return process.exit(1);
-      }
-
-      debugServer(`Server is shutting down.`);
-      process.exit(0);
-    });
-  });
+prexit(async (signal) => {
+  debugServer(`Event ${signal} has been triggered. Gracefully shutting down.`);
+  debugServer(`Closing database connection.`);
+  await sql.end();
+  debugServer("Closing http server");
+  server.close();
 });
