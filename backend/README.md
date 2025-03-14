@@ -1,39 +1,82 @@
-# Express API for Warehouse app
+# REST API for the Warehouse app
 
-This folder serves as the scaffold of the application that is a part of the interview process for candidates attending on the position in CloudTalk.
+REST API server is a small expressjs server. It exposes 4 endpoints for accessing resources. There's also PostgreSQL database server that stores and manipulates data.
+
+## Introducation
+
+The REST API server exposes these 4 urls:
+
+1. Get a list of products
+
+```bash
+GET /api/products
+```
+
+2. Create a new product
+
+```bash
+POST /api/products
+```
+
+3. Update the product
+
+```bash
+PATCH /api/products/:id
+```
+
+4. Delete the product
+
+```bash
+DELETE /api/products/:id
+```
 
 ## Development
+
+Before you fully jump into this project, please make sure you have these prerequisites installed on your local machine:
+
+1. Docker (and docker compose)
+2. Nodejs
+
+### Installation
+
+Install nodejs dependencies:
+
+```bash
+npm install
+```
+
+Run database
+
+```
+docker compose up
+```
+
+Seed some data. For more about seeding see the [seeding](#seeding) section.
+
+```
+npm run seed -- 20
+```
+
+In order to run the dev server, run following
+
+```
+npm run dev
+```
 
 ### Seeding
 
 In order to prefill the database with fake data, run `npm run seed` command. Don't forget to specify the number of products you want to seed. For instance, in order to seed 20 products run `npm run seed -- 20`.
 
-## Assignment
+### Testing
 
-1. Warehouse application, needs API for following features
+To run unit and integration tests please run:
 
-   1. Table of products that are available
-   2. Product definition (required properties)
+```bash
+npm run test
+```
 
-      1. ID
-      2. Name
-      3. Quantity
-      4. Unit price (euros)
+To run code coverage, please run
 
-   3. Product manipulation
-
-      1. CRUD operations
-
-   4. Shipments (optional)
-
-2. Please at the development consider
-
-   1. Development best practises
-   2. Testing
-   3. Simulate a situation in which you work with the team (pay attention to how you work with Git)
-
-3. This is a bare minimum, there are no limits to creativity, just keep in mind what we wanted
-
-We wish you good luck and a clear mind! We are looking forward to seeing you!
-
-PS: We should be able to run application locally, thus start the backend and be able to use endpoints through the curl/postman.
+```bash
+npm run test -- --coverage
+```
