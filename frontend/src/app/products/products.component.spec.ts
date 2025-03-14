@@ -16,7 +16,22 @@ describe("ProductsComponent", () => {
     fixture.detectChanges();
   });
 
-  it("creates a compoent", () => {
+  it("creates a component", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("emits the createProduct event", () => {
+    spyOn(component.onCreate, "emit");
+    component.createProduct();
+    expect(component.onCreate.emit).toHaveBeenCalled();
+  });
+
+  it("displays no products available", () => {
+    fixture.detectChanges();
+    component.products = [];
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const noContent = compiled.querySelector(".no-content");
+    expect(noContent?.textContent).toBe("No products available");
   });
 });
