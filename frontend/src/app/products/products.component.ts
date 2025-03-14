@@ -1,9 +1,10 @@
 import type {Product} from "./models";
 import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {ProductsRowComponent} from "../products-row/products-row.component";
 
 @Component({
   selector: "app-products",
-  imports: [],
+  imports: [ProductsRowComponent],
   templateUrl: "./products.component.html",
   styleUrl: "./products.component.scss"
 })

@@ -1,10 +1,13 @@
-<div class="products-header">
-  <p>ID</p>
-  <p>Name</p>
-  <p>Quantity</p>
-  <p>Price (EUR)</p>
-  <button (click)="createProduct()">Add product</button>
-</div>
+<app-products-row
+  class="products-header"
+  id="ID"
+  name="Name"
+  quantity="Quantity"
+  price="Price"
+>
+  <button class="btn-create" (click)="createProduct()">Add product</button>
+</app-products-row>
+
 @if (products) {
   <ng-content></ng-content>
 } @else {

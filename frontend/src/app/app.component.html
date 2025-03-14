@@ -3,7 +3,7 @@
 </header>
 
 @if (showCreateModal()) {
-  <app-modal (toggle)="toggleCreateModal($event)">
+  <app-modal (onClose)="toggleCreateModal(false)">
     <app-product-form
       title="Add product"
       (onSubmit)="addProduct($event)"
@@ -12,7 +12,7 @@
 }
 
 @if (showEditModal()) {
-  <app-modal title="Edit product" (toggle)="toggleEditModal($event)">
+  <app-modal title="Edit product" (onClose)="closeEditModal()">
     <app-product-form
       title="Edit product"
       [data]="editProduct()"
@@ -27,13 +27,16 @@
   <app-products (onCreate)="toggleCreateModal(true)" [products]="products()">
     @for (product of products(); track product.id) {
       <app-products-row
-        (onDelete)="removeProduct($event)"
-        (onUpdate)="openEditModal($event)"
         [id]="product.id"
         [quantity]="product.quantity"
         [name]="product.name"
         [price]="product.price"
-      ></app-products-row>
+      >
+        <button class="btn-edit" (click)="openEditModal(product)">Edit</button>
+        <button class="btn-remove" (click)="removeProduct(product.id)">
+          Remove
+        </button>
+      </app-products-row>
     }
   </app-products>
 }

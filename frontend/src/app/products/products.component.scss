@@ -1,22 +1,15 @@
 .products-header {
   position: sticky;
   top: 0;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Creates 4 equal columns */
-  gap: 16px; /* Spacing between grid items */
-  align-items: center; /* Vertically center content */
-  padding: 8px 16px;
-  border-bottom: 1px solid #eee;
-  width: 60%;
   margin: 0 auto;
   background-color: white;
-}
-
-.products-header > button {
-  background-color: greenyellow;
 }
 
 .no-content {
   padding: 3em;
   background-color: blanchedalmond;
+}
+
+.btn-create {
+  background-color: greenyellow;
 }

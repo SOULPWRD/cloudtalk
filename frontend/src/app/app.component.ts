@@ -37,8 +37,8 @@ export class AppComponent implements OnInit {
     this.showCreateModal.set(value);
   }
 
-  toggleEditModal(value: boolean) {
-    this.showEditModal.set(value);
+  closeEditModal() {
+    this.showEditModal.set(false);
   }
 
   openEditModal(product: Product) {
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit {
           return product;
         })
       );
-      this.toggleEditModal(false);
+      this.closeEditModal();
     });
   }
 }

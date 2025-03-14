@@ -7,11 +7,11 @@ import {HostListener, Component, EventEmitter, Output} from "@angular/core";
   styleUrl: "./modal.component.scss"
 })
 export class ModalComponent {
-  @Output() toggle = new EventEmitter();
+  @Output() onClose = new EventEmitter();
 
   @HostListener("document:keydown.escape", ["$event"])
-  toggleModal() {
+  closeModal() {
     // closing the modal
-    this.toggle.emit(false);
+    this.onClose.emit(false);
   }
 }
