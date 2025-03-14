@@ -36,6 +36,11 @@
         }
       }
     </div>
-    <button type="submit" [disabled]="!productForm.valid">Submit</button>
+    <button
+      type="submit"
+      [disabled]="productForm.pristine || !productForm.valid"
+    >
+      Submit
+    </button>
   </form>
 </div>
