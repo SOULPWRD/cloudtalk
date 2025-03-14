@@ -19,4 +19,10 @@ describe("ModalComponent", () => {
   it("creates a component", () => {
     expect(component).toBeTruthy();
   });
+
+  it("emits the closeModal event", () => {
+    spyOn(component.onClose, "emit");
+    component.closeModal();
+    expect(component.onClose.emit).toHaveBeenCalledWith(false);
+  });
 });
