@@ -10,7 +10,7 @@ import {ProductsService} from "./products-api.service";
 describe("ProductsService", () => {
   let httpMock: HttpTestingController;
   let service: ProductsService;
-  beforeEach(async () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         ProductsService,
