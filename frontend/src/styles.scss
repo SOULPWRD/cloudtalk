@@ -37,3 +37,9 @@ button:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4); /* Subtle focus ring */
 }
+
+button:disabled {
+  background-color: white;
+  cursor: not-allowed;
+  transform: translateY(0);
+}

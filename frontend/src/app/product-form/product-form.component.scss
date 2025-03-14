@@ -16,8 +16,15 @@ label {
   margin-right: 1em;
 }
 
-input[type="text"] {
+input {
   width: 20em;
   height: 2.5em;
   font-size: large;
+}
+
+span {
+  color: red;
+  display: block;
+  margin-left: 6em;
+  margin-top: 1em;
 }

@@ -4,14 +4,37 @@
     <div>
       <label for="name">Name: </label>
       <input id="name" type="text" formControlName="name" />
+      @if (name?.invalid && (name?.dirty || name?.touched)) {
+        @if (name?.hasError("required")) {
+          <span>*Name is required</span>
+        }
+      }
     </div>
     <div>
       <label for="quantity">Quantity: </label>
-      <input id="quantity" type="text" formControlName="quantity" />
+      <input id="quantity" type="number" formControlName="quantity" />
+      @if (quantity?.invalid && (quantity?.dirty || quantity?.touched)) {
+        @if (quantity?.hasError("required")) {
+          <span>*Quantity is required</span>
+        }
+
+        @if (quantity?.hasError("greaterThan")) {
+          <span>*Quantity has to be greater than zero</span>
+        }
+      }
     </div>
     <div>
       <label for="price">Price: </label>
-      <input id="price" type="text" formControlName="price" />
+      <input id="price" type="number" formControlName="price" />
+      @if (price?.invalid && (price?.dirty || price?.touched)) {
+        @if (price?.hasError("required")) {
+          <span>*Price is required</span>
+        }
+
+        @if (price?.hasError("greaterThan")) {
+          <span>*Price has to be greater than zero</span>
+        }
+      }
     </div>
     <button type="submit" [disabled]="!productForm.valid">Submit</button>
   </form>
