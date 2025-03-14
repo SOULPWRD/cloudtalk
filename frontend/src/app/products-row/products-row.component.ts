@@ -12,15 +12,15 @@ export class ProductsRowComponent {
   @Input({required: true}) quantity!: number;
   @Input({required: true}) price!: number;
 
-  @Output() delete = new EventEmitter<string>();
-  @Output() update = new EventEmitter<Product>();
+  @Output() onDelete = new EventEmitter<string>();
+  @Output() onUpdate = new EventEmitter<Product>();
 
   deleteProduct() {
-    this.delete.emit(this.id);
+    this.onDelete.emit(this.id);
   }
 
   updateProduct() {
-    this.update.emit({
+    this.onUpdate.emit({
       id: this.id,
       name: this.name,
       quantity: this.quantity,

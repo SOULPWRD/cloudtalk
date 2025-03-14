@@ -3,12 +3,18 @@ import type {Product} from "./products/models";
 import {Component, inject, OnInit, signal} from "@angular/core";
 import {ProductsComponent} from "./products/products.component";
 import {ProductsService} from "./products/products-api.service";
+import {ProductsRowComponent} from "./products-row/products-row.component";
 import {ModalComponent} from "./modal/modal.component";
 import {ProductFormComponent} from "./product-form/product-form.component";
 
 @Component({
   selector: "app-root",
-  imports: [ProductsComponent, ModalComponent, ProductFormComponent],
+  imports: [
+    ProductsComponent,
+    ModalComponent,
+    ProductFormComponent,
+    ProductsRowComponent
+  ],
   providers: [ProductsService],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss"

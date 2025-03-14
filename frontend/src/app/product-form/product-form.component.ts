@@ -11,7 +11,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 export class ProductFormComponent implements OnInit {
   @Input({required: true}) title!: string;
   @Input() data!: Product | undefined;
-  @Output() submittor = new EventEmitter<Product>();
+  @Output() onSubmit = new EventEmitter<Product>();
   productForm!: FormGroup;
 
   ngOnInit(): void {
@@ -23,6 +23,6 @@ export class ProductFormComponent implements OnInit {
   }
 
   submit() {
-    this.submittor.emit({id: this.data?.id, ...this.productForm.value});
+    this.onSubmit.emit({id: this.data?.id, ...this.productForm.value});
   }
 }
