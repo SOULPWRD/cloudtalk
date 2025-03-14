@@ -24,10 +24,10 @@ describe("ProductsRowComponent", () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const paragraphs = compiled.querySelectorAll("p");
+    const spans = compiled.querySelectorAll("span");
 
-    expect(paragraphs[1]?.textContent).toBe("Name: Apple");
-    expect(paragraphs[2]?.textContent).toBe("Quantity: 80");
-    expect(paragraphs[3]?.textContent).toBe("Price: 1.5");
+    expect(spans[1]?.textContent).toBe("Apple");
+    expect(spans[2]?.textContent).toBe("80");
+    expect(spans[3]?.textContent).toBe("1.5");
   });
 });
