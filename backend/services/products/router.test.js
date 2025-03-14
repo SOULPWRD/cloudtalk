@@ -5,6 +5,7 @@ import {app} from "../../app.js";
 import {cleanupDatabase} from "../../scripts/cleanup.js";
 import {sql} from "../../client.js";
 import {products} from "../../mocks/products.js";
+import {errors} from "celebrate";
 
 const baseUrl = "/products";
 
@@ -12,6 +13,7 @@ beforeEach(cleanupDatabase);
 
 beforeAll(() => {
   app.use(baseUrl, router);
+  app.use(errors());
 });
 
 describe("Products router", () => {
@@ -26,15 +28,31 @@ describe("Products router", () => {
 
       expect(response.body).toEqual(
         products.map((product) => ({
+          ...product,
           id: expect.any(String),
-          ...product
+          // There is an "issue" with numeric data type in the postgres library
+          // It returns numeric field as string
+          // https://www.npmjs.com/package/postgres#numbers-bigint-numeric
+          price: product.price.toFixed(2)
         }))
       );
     });
   });
 
   describe("POST /products", () => {
-    it("creates a single product item", async () => {
+    it("returns 400 and throws validation error for incorrect price input", async () => {
+      const product = {...products[0], price: -1};
+
+      const response = await request(app)
+        .post(baseUrl)
+        .send(product)
+        .set("Accept", "application/json")
+        .expect(400);
+
+      expect(response.status).toBe(400);
+    });
+
+    it("returns 201 and creates a single product item", async () => {
       const [product] = products;
       const response = await request(app)
         .post(baseUrl)
@@ -44,8 +62,12 @@ describe("Products router", () => {
         .expect(201);
 
       expect(response.body).toEqual({
+        ...product,
         id: expect.any(String),
-        ...product
+        // There is an "issue" with numeric data type in the postgres library
+        // It returns numeric field as string
+        // https://www.npmjs.com/package/postgres#numbers-bigint-numeric
+        price: product.price.toFixed(2)
       });
     });
   });
